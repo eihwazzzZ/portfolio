@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100">
+  <!-- Logotipo escudo con ID -->
+  <defs>
+    <linearGradient id="gradShield" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6200ea; stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#348582; stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Dibujamos un círculo como contenedor -->
+  <circle cx="75" cy="50" r="40" fill="url(#gradShield)" stroke="black" stroke-width="3" />
+
+  <!-- Letras "ID" centradas dentro del círculo -->
+  <text x="75" y="50" font-size="30" text-anchor="middle" alignment-baseline="central" fill="white" font-family="Arial, sans-serif" font-weight="bold">ID</text>
+  
+  <!-- Texto InfoDev con la degradación aplicada -->
+  <defs>
+    <linearGradient id="gradText" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6200ea; stop-opacity:1" /> <!-- Deep Purple -->
+      <stop offset="100%" style="stop-color:#348582; stop-opacity:1" /> <!-- Amber -->
+    </linearGradient>
+  </defs>
+
+  <!-- Texto InfoDev alineado con el círculo -->
+  <text x="150" y="55" font-size="60" fill="url(#gradText)" font-family="Arial, sans-serif" alignment-baseline="middle">InfoDev</text>
+</svg>
