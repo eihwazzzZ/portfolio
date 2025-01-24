@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -11,13 +11,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-/* Margins */
-.margin-tb-20 {
-    margin: 20px 0;
-}
-
-.mt-10 {
-    margin-top: 10px;
 }
