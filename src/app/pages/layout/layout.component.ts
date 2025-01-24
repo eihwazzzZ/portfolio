@@ -13,7 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class LayoutComponent {
   profession:string = "Fullstack Developer";
-  description:string = "I'm continuously seeking to expand my knowledge, as well as my soft and hard skills";
+  description:string = "I am continuously seeking to expand my knowledge, as well as my soft and hard skills";
   email:string = "Martinbrito1985@gmail.com";
 
 }
