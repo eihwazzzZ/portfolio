@@ -1,0 +1,16 @@
+<div class="flex justify-center items-center h-screen">
+    <!-- Correcto: utilizar @for con una declaración adecuada -->
+    @for(card of cards; track card) {
+      <div class="w-60 h-80 m-4" [@girar]>
+        <mat-card class="bg-white shadow-lg rounded-xl">
+          <mat-card-header>
+            <mat-card-title> Carta {{ card }} </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Contenido de la carta {{ card }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    }
+  </div>
+  
