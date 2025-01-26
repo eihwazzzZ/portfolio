@@ -1,0 +1,8 @@
+.relative {
+    transform-style: preserve-3d; /* Mantén el estilo 3D */
+}
+  
+.absolute {
+    backface-visibility: hidden; /* Oculta la parte trasera durante el giro */
+}
+  
