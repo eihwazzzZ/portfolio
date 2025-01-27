@@ -4,25 +4,30 @@
       <div class="w-[200px] h-[300px] m-4" [@entrada]  [@girar]="cartaEstado[card]" (click)="girarCarta(card)">
         <div class="relative w-full h-full">
             <!-- Cara del reverso (ya visible al principio) -->
-             @if(cartaEstado[card] === 'reverso') {
+             <!--@if(cartaEstado[card] === 'reverso') {
                 <div class="absolute w-full h-full rounded-xl"
                 style="background-image: url('/assets/images/DIAMOND_BG.svg'); background-size: cover; background-position: center; border: 5px solid #000;">
-                <!-- Esto muestra el reverso de la carta con la imagen y borde -->
                 </div>
-            }
+            }-->
 
-            @if(cartaEstado[card] === 'frente') {
-                <div class="absolute w-full h-full rounded-xl">
-                    <mat-card class="bg-white shadow-lg rounded-xl h-full">
+            <!--@if(cartaEstado[card] === 'frente') {-->
+                <div class="absolute w-full h-full rounded-xl"
+                >
+                    <mat-card class="bg-white shadow-lg rounded-xl h-full" [ngStyle]="{
+                        'background-image': !shouldChangeBg[card] ? 'url(/assets/images/DIAMOND_BG.svg)' : 'none',
+                        'background-size': !shouldChangeBg[card] ? 'cover' : 'contain',
+                        'background-position': !shouldChangeBg[card] ? 'center' : 'center',
+                        'border': !shouldChangeBg[card] ? '5px solid #000' : '2px dashed #999'
+                    }">
                     <mat-card-header>
-                        <mat-card-title> Carta {{ card }} </mat-card-title>
+                        <mat-card-title> {{ shouldChangeBg[card] ? 'Carta ' + card : '' }}</mat-card-title>
                     </mat-card-header>
                     <mat-card-content>
-                        <p>Contenido de la carta {{ card }}</p>
+                        <p>{{ shouldChangeBg[card] ? 'Contenido de la carta' + card  : '' }}</p>
                     </mat-card-content>
                     </mat-card>
                 </div>
-            }
+            <!--}-->
         </div>
     </div>
     }

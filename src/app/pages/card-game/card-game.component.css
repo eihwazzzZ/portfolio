@@ -1,8 +1,32 @@
 .relative {
     transform-style: preserve-3d; /* Mantén el estilo 3D */
+    /*animation: girarCarta 1s ease-in-out forwards;*/
 }
   
 .absolute {
     backface-visibility: hidden; /* Oculta la parte trasera durante el giro */
 }
-  
+
+/*@keyframes girarCarta {
+    0% {
+      /*transform: rotateY(0deg);
+      /*background-image: url('/assets/images/DIAMOND_BG.svg');
+    }
+    25% {
+      
+      /*background-image: url('/assets/images/DIAMOND_BG.svg');
+    }
+    50% {
+      /*transform: rotateY(90deg);
+      background-image: bg-none;
+      background-color: white;
+    }
+    75% {
+      
+      /*background-image: url('/assets/images/DIAMOND_BG.svg'); 
+    }
+    100% {
+      /*transform: rotateY(180deg);
+      /*background-image: none;
+    }
+  }*/

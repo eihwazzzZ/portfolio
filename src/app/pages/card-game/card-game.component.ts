@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import { MatCardModule } from '@angular/material/card'; // Si usas Angular Material
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-card-game',
   standalone: true,
-  imports: [MatCardModule],
+  imports: [MatCardModule, CommonModule],
   templateUrl: './card-game.component.html',
   styleUrl: './card-game.component.css',
   animations: [
@@ -37,8 +38,13 @@ import { MatCardModule } from '@angular/material/card'; // Si usas Angular Mater
 export class CardGameComponent {
   cards = [1, 2, 3];
   cartaEstado: { [key: number]: 'frente' | 'reverso' } = { 1: 'reverso', 2: 'reverso', 3: 'reverso' };
+  shouldChangeBg: { [key: number]: boolean } = { 1: false, 2: false, 3: false };
 
   girarCarta(cartaId: number): void {
     this.cartaEstado[cartaId] = this.cartaEstado[cartaId] === 'reverso' ? 'frente' : 'reverso';
+
+    setTimeout(() =>{
+      this.shouldChangeBg[cartaId] = !this.shouldChangeBg[cartaId];
+    }, 500)
   }
 }
