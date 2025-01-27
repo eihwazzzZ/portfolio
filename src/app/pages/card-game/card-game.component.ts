@@ -1,6 +1,6 @@
 import { Component, HostListener  } from '@angular/core';
 import { trigger, transition, style, animate, state } from '@angular/animations';
-import { MatCardModule } from '@angular/material/card'; // Si usas Angular Material
+import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { fromEvent } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
@@ -14,10 +14,10 @@ import { throttleTime } from 'rxjs/operators';
   animations: [
     trigger('girar', [
       state('frente', style({
-        transform: 'rotateY(0deg)', // Estado frontal (mostrando el contenido)
+        transform: 'rotateY(0deg)',
       })),
       state('reverso', style({
-        transform: 'rotateY(180deg)', // Estado invertido (reverso de la carta)
+        transform: 'rotateY(180deg)',
       })),
       transition('frente <=> reverso', [
         animate('1s ease-in-out')
@@ -26,11 +26,11 @@ import { throttleTime } from 'rxjs/operators';
     trigger('entrada', [
       transition(':enter', [
         style({
-          transform: 'translateX(-100%) rotateY(180deg)', // Empuja desde la izquierda y gira en 3D
+          transform: 'translateX(-100%) rotateY(180deg)',
           opacity: 0
         }),
         animate('1s ease-in-out', style({
-          transform: 'translateX(0) rotateY(180deg)', // Lleva al centro y mantiene la rotación de 180 grados
+          transform: 'translateX(0) rotateY(180deg)',
           opacity: 1
         }))
       ])
@@ -61,7 +61,7 @@ export class CardGameComponent {
     setTimeout(() =>{
       this.shouldChangeBg[cartaId] = !this.shouldChangeBg[cartaId];
     }, 500)
-    
+
     setTimeout(() => {
       this.isAnimating[cartaId] = false;
     }, 1000);
