@@ -1,10 +1,9 @@
-import { Component, HostListener  } from '@angular/core';
-import { trigger, transition, style, animate, state } from '@angular/animations';
+import { Component, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { fromEvent } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
-import { DragDropModule , CdkDragDrop, CdkDrag, CdkDropList, moveItemInArray, transferArrayItem, CdkDragRelease } from '@angular/cdk/drag-drop';
+import { DragDropModule , CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem, CdkDragRelease } from '@angular/cdk/drag-drop';
 import { CardComponent } from "../card/card.component";
 
 interface Card {
@@ -15,10 +14,10 @@ interface Card {
 @Component({
   selector: 'app-card-game',
   standalone: true,
-  imports: [MatCardModule, CommonModule, DragDropModule, CdkDrag, CdkDropList, CardComponent],
+  imports: [MatCardModule, CommonModule, DragDropModule, CdkDropList, CardComponent],
   templateUrl: './card-game.component.html',
   styleUrl: './card-game.component.css',
-  animations: [
+  /*animations: [
     trigger('girar', [
       state('frente', style({
         transform: 'rotateY(0deg)',
@@ -42,8 +41,7 @@ interface Card {
         }))
       ])
     ]),
-    
-  ]
+  ]*/
 })
 export class CardGameComponent {
   cards: Card[] = [
@@ -52,10 +50,7 @@ export class CardGameComponent {
     {id:3, name:'Card 3'}
   ];
   cardsDropZone: Card[] = [];
-  cartaEstado: { [key: number]: 'frente' | 'reverso' } = { 1: 'reverso', 2: 'reverso', 3: 'reverso' };
-  shouldChangeBg: { [key: number]: boolean } = { 1: false, 2: false, 3: false };
-  isAnimating: { [key: number]: boolean } = { 1: false, 2: false, 3: false };
-  isDragging: { [key: number]: boolean } = { 1: false, 2: false, 3: false };
+  @ViewChild(CardComponent) child!:CardComponent;
 
   ngOnInit() {
     fromEvent(window, 'resize').pipe(
@@ -64,28 +59,6 @@ export class CardGameComponent {
       // Nothing here. Only for performance
     });
   };
-
-  girarCarta(cartaId: number): void {
-    if (this.isAnimating[cartaId] || this.isDragging[cartaId]) return;
-
-    this.isAnimating[cartaId] = true;
-
-    this.cartaEstado[cartaId] = this.cartaEstado[cartaId] === 'reverso' ? 'frente' : 'reverso';
-
-    setTimeout(() =>{
-      this.shouldChangeBg[cartaId] = !this.shouldChangeBg[cartaId];
-    }, 500)
-
-    setTimeout(() => {
-      this.isAnimating[cartaId] = false;
-    }, 1000);
-  };
-
-  dragEnded(event: CdkDragRelease) {
-    setTimeout(() => {
-      this.girarCarta(event.source.data.id);
-    }, 100);
-  }
 
   drop(event: CdkDragDrop<Card[]>) {
     console.log(event);
@@ -99,5 +72,8 @@ export class CardGameComponent {
         event.currentIndex,
       );
     }
+    setTimeout(() => {
+      this.child.girarCarta(event.item.data.id);
+    }, 500);
   };
 }

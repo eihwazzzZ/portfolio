@@ -1,4 +1,10 @@
-<div class="w-[200px] h-[300px] m-4 cdk-drag" [@entrada] [@girar]="cartaEstado[card.id]" (click)="girarCarta(card.id)" (cdkDragEnded)="dragEnded($event)" [cdkDragData]="card" cdkDrag>
+<div #cardElement class="w-[200px] h-[300px] m-4 cdk-drag"
+        [@entrada]
+        [@girar]="cartaEstado[card.id]"
+        (click)="girarCarta(card.id)"
+        (cdkDragEnded)="dragEnded($event)"
+        [cdkDragData]="card"
+        cdkDrag>
     <div class="relative w-full h-full">
             <div class="absolute w-full h-full rounded-xl"
             >
