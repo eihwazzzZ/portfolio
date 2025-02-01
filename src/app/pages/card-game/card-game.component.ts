@@ -46,9 +46,9 @@ interface Card {
 })
 export class CardGameComponent {
   cards: Card[] = [
-    {id:1, name:'Card1'},
-    {id:2, name:'Card2'},
-    {id:3, name:'Card3'}
+    {id:1, name:'Card 1'},
+    {id:2, name:'Card 2'},
+    {id:3, name:'Card 3'}
   ];
   cardsDropZone: Card[] = [];
   cartaEstado: { [key: number]: 'frente' | 'reverso' } = { 1: 'reverso', 2: 'reverso', 3: 'reverso' };
