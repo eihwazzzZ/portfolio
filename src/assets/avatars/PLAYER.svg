@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Fondo blanco -->
+  <rect width="200" height="200" fill="white"/>
+  
+  <!-- Cabeza del avatar -->
+  <circle cx="100" cy="60" r="40" stroke="black" stroke-width="2" fill="white"/>
+  
+  <!-- Manos (solo una mano con cartas levantadas) -->
+  <path d="M120,110 C110,90 90,90 100,130" stroke="black" stroke-width="2" fill="none"/> <!-- Mano levantada -->
+  
+  <!-- Cartas en la mano levantada -->
+  <rect x="95" y="115" width="10" height="15" stroke="black" stroke-width="2" fill="white" transform="rotate(-20 100 120)"/>
+  <rect x="100" y="110" width="10" height="15" stroke="black" stroke-width="2" fill="white" transform="rotate(0 105 115)"/>
+  <rect x="105" y="105" width="10" height="15" stroke="black" stroke-width="2" fill="white" transform="rotate(20 110 110)"/>
+  
+  <!-- Detalles mínimos de la cara -->
+  <circle cx="90" cy="55" r="4" fill="black"/> <!-- Ojo izquierdo -->
+  <circle cx="110" cy="55" r="4" fill="black"/> <!-- Ojo derecho -->
+  
+  <!-- Boca (expresión sonriente) -->
+  <path d="M85,70 Q100,80 115,70" stroke="black" stroke-width="2" fill="transparent"/>
+  
+  <!-- Bordes del avatar -->
+  <circle cx="100" cy="60" r="42" stroke="black" stroke-width="2" fill="none"/>
+</svg>

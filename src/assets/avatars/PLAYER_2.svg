@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Fondo blanco para la cara -->
+  <rect width="200" height="200" fill="white"/>
+  
+  <!-- Cabeza del avatar -->
+  <circle cx="100" cy="60" r="45" stroke="black" stroke-width="3" fill="white"/>
+  
+  <!-- Peinado estilizado -->
+  <path d="M65,45 C80,25 120,25 135,45" stroke="black" stroke-width="4" fill="none"/> <!-- Parte superior del cabello -->
+  <path d="M55,52 C75,40 125,40 145,52" stroke="black" stroke-width="3" fill="none"/> <!-- Cabello hacia los lados -->
+  
+  <!-- Ojos -->
+  <circle cx="85" cy="55" r="6" fill="black"/> <!-- Ojo izquierdo -->
+  <circle cx="115" cy="55" r="6" fill="black"/> <!-- Ojo derecho -->
+  
+  <!-- Boca con expresión sonriente -->
+  <path d="M85,75 Q100,85 115,75" stroke="black" stroke-width="2" fill="transparent"/> <!-- Sonrisa -->
+
+  <!-- Manos con cartas -->
+  <path d="M80,105 C85,120 90,125 95,115" stroke="black" stroke-width="3" fill="none"/> <!-- Mano izquierda -->
+  <path d="M120,105 C115,120 110,125 105,115" stroke="black" stroke-width="3" fill="none"/> <!-- Mano derecha -->
+
+  <!-- Cartas en la mano -->
+  <rect x="90" y="125" width="10" height="15" stroke="black" stroke-width="2" fill="white" transform="rotate(-15 95 132)"/>
+  <rect x="95" y="120" width="10" height="15" stroke="black" stroke-width="2" fill="white" transform="rotate(0 100 127)"/>
+  <rect x="100" y="115" width="10" height="15" stroke="black" stroke-width="2" fill="white" transform="rotate(15 105 122)"/>
+  
+  <!-- Bordes del avatar -->
+  <circle cx="100" cy="60" r="47" stroke="black" stroke-width="3" fill="none"/>
+</svg>

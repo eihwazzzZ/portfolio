@@ -1,0 +1,23 @@
+<div class="w-[200px] h-[300px] m-4 cdk-drag" [@entrada] [@girar]="cartaEstado[card.id]" (click)="girarCarta(card.id)" (cdkDragEnded)="dragEnded($event)" [cdkDragData]="card" cdkDrag>
+    <div class="relative w-full h-full">
+            <div class="absolute w-full h-full rounded-xl"
+            >
+                <mat-card class="bg-white shadow-lg rounded-xl h-full" [ngStyle]="{
+                    'background-image': !shouldChangeBg[card.id] ? 'url(/assets/images/DIAMOND_BG.svg)' : 'none',
+                    'background-size': !shouldChangeBg[card.id] ? 'cover' : 'contain',
+                    'background-position': !shouldChangeBg[card.id] ? 'center' : 'center',
+                    'border': !shouldChangeBg[card.id] ? '5px solid #000' : '2px dashed #999'
+                }">
+                <mat-card-header>
+                    <mat-card-title> {{ shouldChangeBg[card.id] ? card.name : '' }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>{{ shouldChangeBg[card.id] ? 'Contenido de la carta ' + card.id  : '' }}</p>
+                </mat-card-content>
+                </mat-card>
+            </div>
+            <mat-card>
+                <h1></h1>
+            </mat-card>
+    </div>
+</div>

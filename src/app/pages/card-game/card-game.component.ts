@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { fromEvent } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
 import { DragDropModule , CdkDragDrop, CdkDrag, CdkDropList, moveItemInArray, transferArrayItem, CdkDragRelease } from '@angular/cdk/drag-drop';
+import { CardComponent } from "../card/card.component";
 
 interface Card {
   id: number,
@@ -14,7 +15,7 @@ interface Card {
 @Component({
   selector: 'app-card-game',
   standalone: true,
-  imports: [MatCardModule, CommonModule, DragDropModule, CdkDrag, CdkDropList],
+  imports: [MatCardModule, CommonModule, DragDropModule, CdkDrag, CdkDropList, CardComponent],
   templateUrl: './card-game.component.html',
   styleUrl: './card-game.component.css',
   animations: [
@@ -83,7 +84,7 @@ export class CardGameComponent {
   dragEnded(event: CdkDragRelease) {
     setTimeout(() => {
       this.girarCarta(event.source.data.id);
-    }, 500);
+    }, 100);
   }
 
   drop(event: CdkDragDrop<Card[]>) {
