@@ -1,0 +1,18 @@
+.drop-container {
+  border: 1px solid black;
+  min-height: 200px;
+  width: 200px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  position: relative; /* Esto asegura que el drop se pueda detectar correctamente */
+  overflow: hidden;  /* Asegura que no haya elementos invisibles que interfieran */
+}
+
+.drag-item {
+  width: 100px;
+  height: 100px;
+  background-color: lightblue;
+  text-align: center;
+  line-height: 100px;
+  margin-bottom: 10px; /* Un poco de espacio entre los ítems */
+}

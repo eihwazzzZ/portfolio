@@ -1,0 +1,19 @@
+.juego-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    height: 400px;
+    position: relative;
+}
+  
+app-cartas {
+    width: 200px;
+    height: 300px;
+}
+  
+app-campo-batalla {
+    width: 600px;
+    height: 300px;
+    border: 2px solid #ccc;
+    position: relative;
+}

@@ -5,3 +5,7 @@
 .absolute {
     backface-visibility: hidden;
 }
+
+.cdk-drag {
+  z-index: 10;
+}

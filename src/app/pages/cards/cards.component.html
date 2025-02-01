@@ -1,0 +1,11 @@
+<!-- Contenedor donde se sueltan los ítems -->
+<div cdkDropList (cdkDragDropped)="onDrop($event)" class="drop-container">
+  <!-- Este es el contenedor donde se espera que el ítem sea soltado -->
+</div>
+
+<!-- Los ítems arrastrables -->
+<div *ngFor="let movie of moviesArray">
+  <div cdkDrag (cdkDragStarted)="dragStarted($event)" class="drag-item" [cdkDragData]="movie">
+    {{ movie.name }}
+  </div>
+</div>
