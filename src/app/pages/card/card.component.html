@@ -15,10 +15,16 @@
                     'border': !shouldChangeBg[card.id] ? '5px solid #000' : '2px dashed #999'
                 }">
                 <mat-card-header>
-                    <mat-card-title> {{ shouldChangeBg[card.id] ? card.name : '' }}</mat-card-title>
+                    <mat-card-title-group>
+                        <mat-card-title> {{ shouldChangeBg[card.id] ? card.name : '' }}</mat-card-title>
+                        <mat-card-subtitle></mat-card-subtitle>
+                        @if (shouldChangeBg[card.id]) {
+                            <img mat-card-md-image src="/assets/avatars/{{card.img}}" class="!rounded-full">
+                        }
+                    </mat-card-title-group>
                 </mat-card-header>
                 <mat-card-content>
-                    <p>{{ shouldChangeBg[card.id] ? 'Contenido de la carta ' + card.id  : '' }}</p>
+                    <p>{{ shouldChangeBg[card.id] ? card.description  : '' }}</p>
                 </mat-card-content>
                 </mat-card>
             </div>

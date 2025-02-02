@@ -4,11 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { DragDropModule, CdkDrag, CdkDragRelease } from '@angular/cdk/drag-drop';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { NgZone } from '@angular/core';
-
-interface Card {
-  id: number,
-  name: string
-};
+import { Card } from '../../models/card';
 
 @Component({
   selector: 'app-card',

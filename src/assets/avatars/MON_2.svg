@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Cuerpo -->
+  <ellipse cx="100" cy="120" rx="50" ry="70" fill="darkred" stroke="black" stroke-width="4"/>
+  
+  <!-- Ojos -->
+  <circle cx="70" cy="90" r="12" fill="yellow"/>
+  <circle cx="130" cy="90" r="12" fill="yellow"/>
+  <circle cx="70" cy="90" r="6" fill="black"/>
+  <circle cx="130" cy="90" r="6" fill="black"/>
+  
+  <!-- Antenas -->
+  <line x1="50" y1="60" x2="40" y2="20" stroke="darkred" stroke-width="5"/>
+  <line x1="150" y1="60" x2="160" y2="20" stroke="darkred" stroke-width="5"/>
+  
+  <!-- Boca (más agresiva) -->
+  <path d="M60,140 Q100,180 140,140" stroke="black" stroke-width="4" fill="transparent"/>
+  
+  <!-- Colmillos -->
+  <path d="M60,140 Q50,150 60,160" stroke="white" stroke-width="3" fill="transparent"/>
+  <path d="M140,140 Q150,150 140,160" stroke="white" stroke-width="3" fill="transparent"/>
+  
+  <!-- Piernas -->
+  <circle cx="60" cy="170" r="10" fill="darkred"/>
+  <circle cx="140" cy="170" r="10" fill="darkred"/>
+  
+  <!-- Detalles adicionales (más peligroso) -->
+  <circle cx="85" cy="80" r="4" fill="black"/>
+  <circle cx="115" cy="80" r="4" fill="black"/>
+  
+  <!-- Garras (más agresivas) -->
+  <path d="M50,155 L40,170" stroke="black" stroke-width="5"/>
+  <path d="M150,155 L160,170" stroke="black" stroke-width="5"/>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Cuerpo -->
+  <ellipse cx="100" cy="120" rx="60" ry="80" fill="lightgreen" stroke="green" stroke-width="3"/>
+  
+  <!-- Ojos -->
+  <circle cx="70" cy="100" r="15" fill="white"/>
+  <circle cx="130" cy="100" r="15" fill="white"/>
+  <circle cx="70" cy="100" r="7" fill="black"/>
+  <circle cx="130" cy="100" r="7" fill="black"/>
+  
+  <!-- Antenas -->
+  <line x1="50" y1="50" x2="40" y2="20" stroke="green" stroke-width="4"/>
+  <line x1="150" y1="50" x2="160" y2="20" stroke="green" stroke-width="4"/>
+  
+  <!-- Boca -->
+  <path d="M60,140 Q100,160 140,140" stroke="black" stroke-width="3" fill="transparent"/>
+  
+  <!-- Piernas -->
+  <circle cx="60" cy="170" r="12" fill="green"/>
+  <circle cx="140" cy="170" r="12" fill="green"/>
+  
+  <!-- Detalles adicionales -->
+  <circle cx="80" cy="80" r="5" fill="yellow"/>
+  <circle cx="120" cy="80" r="5" fill="yellow"/>
+</svg>

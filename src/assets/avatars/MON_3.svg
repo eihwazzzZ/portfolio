@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Cuerpo (con una forma más elegante) -->
+  <ellipse cx="100" cy="120" rx="50" ry="70" fill="purple" stroke="black" stroke-width="3"/>
+  
+  <!-- Ojos (mágicos) -->
+  <circle cx="70" cy="90" r="15" fill="white"/>
+  <circle cx="130" cy="90" r="15" fill="white"/>
+  <circle cx="70" cy="90" r="7" fill="yellow"/>
+  <circle cx="130" cy="90" r="7" fill="yellow"/>
+  
+  <!-- Sombrero de mago -->
+  <polygon points="60,50 100,10 140,50" fill="darkblue" stroke="black" stroke-width="3"/>
+  
+  <!-- Boca (suavizada, con toque de sabiduría) -->
+  <path d="M60,140 Q100,160 140,140" stroke="black" stroke-width="3" fill="transparent"/>
+  
+  <!-- Bastón mágico -->
+  <line x1="100" y1="160" x2="100" y2="200" stroke="gold" stroke-width="4"/>
+  <circle cx="100" cy="200" r="5" fill="gold"/>
+  
+  <!-- Detalles mágicos en el cuerpo (glifos) -->
+  <circle cx="85" cy="80" r="5" fill="lightblue"/>
+  <circle cx="115" cy="80" r="5" fill="lightblue"/>
+  <circle cx="100" cy="120" r="8" fill="lightgreen" opacity="0.6"/>
+  
+  <!-- Antenas místicas -->
+  <line x1="50" y1="60" x2="40" y2="30" stroke="purple" stroke-width="5"/>
+  <line x1="150" y1="60" x2="160" y2="30" stroke="purple" stroke-width="5"/>
+  
+  <!-- Piernas -->
+  <circle cx="60" cy="170" r="10" fill="purple"/>
+  <circle cx="140" cy="170" r="10" fill="purple"/>
+</svg>

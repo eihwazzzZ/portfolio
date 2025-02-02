@@ -5,11 +5,7 @@ import { fromEvent } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
 import { DragDropModule , CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem, CdkDragRelease } from '@angular/cdk/drag-drop';
 import { CardComponent } from "../card/card.component";
-
-interface Card {
-  id: number,
-  name: string
-}
+import { Card } from '../../models/card';
 
 @Component({
   selector: 'app-card-game',
@@ -45,9 +41,9 @@ interface Card {
 })
 export class CardGameComponent {
   cards: Card[] = [
-    {id:1, name:'Card 1'},
-    {id:2, name:'Card 2'},
-    {id:3, name:'Card 3'}
+    {id:1, name:'Greeny',img:'MON_1.svg', description: "He's green as his spells. He can throw acid from his mouth"},
+    {id:2, name:'Molty',img:'MON_2.svg', description: 'Tiny but dangerous. He can use his eyes to fire molten rays'},
+    {id:3, name:'Gician',img:'MON_3.svg', description: 'Powerful magician. His spells are really amazing'}
   ];
   cardsDropZone: Card[] = [];
   @ViewChild(CardComponent) child!:CardComponent;
