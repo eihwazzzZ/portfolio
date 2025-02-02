@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { fromEvent } from 'rxjs';
@@ -6,6 +6,7 @@ import { throttleTime } from 'rxjs/operators';
 import { DragDropModule , CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem, CdkDragRelease } from '@angular/cdk/drag-drop';
 import { CardComponent } from "../card/card.component";
 import { Card } from '../../models/card';
+import { ActionType } from '../../models/enums/action-type';
 
 @Component({
   selector: 'app-card-game',
@@ -39,16 +40,23 @@ import { Card } from '../../models/card';
     ]),
   ]*/
 })
-export class CardGameComponent {
-  cards: Card[] = [
-    {id:1, name:'Greeny',img:'MON_1.svg', description: "He's green as his spells. He can throw acid from his mouth"},
-    {id:2, name:'Molty',img:'MON_2.svg', description: 'Tiny but dangerous. He can use his eyes to fire molten rays'},
-    {id:3, name:'Gician',img:'MON_3.svg', description: 'Powerful magician. His spells are really amazing'}
-  ];
-  cardsDropZone: Card[] = [];
+export class CardGameComponent implements OnInit {
+
   @ViewChild(CardComponent) child!:CardComponent;
+  cards: Card[] = [];
+  cardsDropZone: Card[] = [];
+  dropZoneLimit: boolean = false;
 
   ngOnInit() {
+    this.cards.push(new Card(1, 'Greeny','MON_1.svg',100,[
+      {id: 1, name: 'Punch', energyConsumption: 1, damage: 10, type: ActionType.DamageAttack}
+    ]));
+    this.cards.push(new Card(2, 'Molty','MON_2.svg',120,[
+      {id: 2, name: 'Kick', energyConsumption: 1, damage: 15, damageToSelf: 10, type: ActionType.MutualDamageAttack}
+    ]));
+    this.cards.push(new Card(2, 'Gician','MON_3.svg',80,[
+      {id: 3, name: 'Debuff', energyConsumption: 1, damage: 0, type: ActionType.DebuffAttack}
+    ]));
     fromEvent(window, 'resize').pipe(
       throttleTime(200) 
     ).subscribe(() => {
@@ -57,7 +65,6 @@ export class CardGameComponent {
   };
 
   drop(event: CdkDragDrop<Card[]>) {
-    console.log(event);
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -68,6 +75,7 @@ export class CardGameComponent {
         event.currentIndex,
       );
     }
+    this.dropZoneLimit = true;
     setTimeout(() => {
       this.child.girarCarta(event.item.data.id);
     }, 500);

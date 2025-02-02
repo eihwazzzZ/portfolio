@@ -4,7 +4,8 @@
         (click)="girarCarta(card.id)"
         (cdkDragEnded)="dragEnded($event)"
         [cdkDragData]="card"
-        cdkDrag>
+        cdkDrag
+        [cdkDragDisabled]="dropZoneLimit">
     <div class="relative w-full h-full">
             <div class="absolute w-full h-full rounded-xl"
             >
@@ -17,14 +18,26 @@
                 <mat-card-header>
                     <mat-card-title-group>
                         <mat-card-title> {{ shouldChangeBg[card.id] ? card.name : '' }}</mat-card-title>
-                        <mat-card-subtitle></mat-card-subtitle>
+                        <mat-card-subtitle> {{ shouldChangeBg[card.id] ? card.hp : '' }} </mat-card-subtitle>
                         @if (shouldChangeBg[card.id]) {
                             <img mat-card-md-image src="/assets/avatars/{{card.img}}" class="!rounded-full">
                         }
                     </mat-card-title-group>
                 </mat-card-header>
-                <mat-card-content>
-                    <p>{{ shouldChangeBg[card.id] ? card.description  : '' }}</p>
+                <mat-card-content [ngClass]="{
+                    'w-full h-full !p-2': shouldChangeBg[card.id]
+                  }">
+                    <div [ngClass]="{
+                        'w-full h-full border-2 border-solid p-4': shouldChangeBg[card.id]
+                      }" class="flex justify-between">
+                      <span>
+                        {{ shouldChangeBg[card.id] ? card.actions[0].name : '' }}
+                      </span>
+                      <span>
+                        {{ shouldChangeBg[card.id] ? card.actions[0].damage : '' }}
+                      </span>
+                        
+                    </div>
                 </mat-card-content>
                 </mat-card>
             </div>

@@ -49,6 +49,7 @@ export class CardComponent {
     shouldChangeBg: { [key: number]: boolean } = { 1: false, 2: false, 3: false };
     isAnimating: { [key: number]: boolean } = { 1: false, 2: false, 3: false };
     isDragging: { [key: number]: boolean } = { 1: false, 2: false, 3: false };
+    dropZoneLimit: boolean = false;
 
     constructor(private cdRef: ChangeDetectorRef, private zone: NgZone) {}
   
@@ -69,6 +70,7 @@ export class CardComponent {
     };
   
     dragEnded(event: CdkDragRelease) {
+      this.dropZoneLimit = true;
       setTimeout(() => {
         /*if (this.cardElement) {
           this.cardElement.nativeElement.click();
