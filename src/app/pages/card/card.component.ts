@@ -1,15 +1,18 @@
-import { ChangeDetectorRef, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { DragDropModule, CdkDrag, CdkDragRelease } from '@angular/cdk/drag-drop';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { NgZone } from '@angular/core';
 import { Card } from '../../models/card';
+import { ActionType } from '../../models/enums/action-type';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [MatCardModule, CommonModule, DragDropModule, CdkDrag],
+  imports: [MatCardModule, CommonModule, DragDropModule, CdkDrag, MatGridListModule, MatIconModule],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css',
   animations: [
@@ -50,6 +53,7 @@ export class CardComponent {
     isAnimating: { [key: number]: boolean } = { 1: false, 2: false, 3: false };
     isDragging: { [key: number]: boolean } = { 1: false, 2: false, 3: false };
     dropZoneLimit: boolean = false;
+    actionTypes = ActionType;
 
     constructor(private cdRef: ChangeDetectorRef, private zone: NgZone) {}
   

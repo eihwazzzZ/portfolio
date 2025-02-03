@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <defs>
+    <pattern id="parquet-pattern" patternUnits="userSpaceOnUse" width="50" height="50">
+
+      <rect width="50" height="50" fill="#D19A6A" />
+
+      <path d="M 0 5 Q 25 2, 50 5 T 50 10" stroke="#A1744A" fill="transparent" stroke-width="1"/>
+      <path d="M 0 15 Q 25 12, 50 15 T 50 20" stroke="#A1744A" fill="transparent" stroke-width="1"/>
+      <path d="M 0 25 Q 25 22, 50 25 T 50 30" stroke="#A1744A" fill="transparent" stroke-width="1"/>
+      <path d="M 0 35 Q 25 32, 50 35 T 50 40" stroke="#A1744A" fill="transparent" stroke-width="1"/>
+      <path d="M 0 45 Q 25 42, 50 45 T 50 50" stroke="#A1744A" fill="transparent" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="500" height="500" fill="url(#parquet-pattern)" />
+</svg>
