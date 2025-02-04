@@ -48,7 +48,10 @@ export class CardGameComponent implements OnInit {
   dropZoneLimit: boolean = false;
 
   ngOnInit() {
-    this.cards.push(new Card(1, 'Greeny','MON_1.svg',100,[
+    /*this.cards.push(new Card(1, 'Greeny','MON_1.svg',100,[
+      {id: 1, name: 'Punch', energyConsumption: 1, damage: 10, type: ActionType.DamageAttack}
+    ]));*/
+    this.cards.push(new Card(1, 'Greeny','Avatar_creature_1.svg',100,[
       {id: 1, name: 'Punch', energyConsumption: 1, damage: 10, type: ActionType.DamageAttack}
     ]));
     this.cards.push(new Card(2, 'Molty','MON_2.svg',120,[
@@ -57,6 +60,7 @@ export class CardGameComponent implements OnInit {
     this.cards.push(new Card(2, 'Gician','MON_3.svg',80,[
       {id: 3, name: 'Debuff', energyConsumption: 1, damage: 0, type: ActionType.DebuffAttack}
     ]));
+    
     fromEvent(window, 'resize').pipe(
       throttleTime(200) 
     ).subscribe(() => {

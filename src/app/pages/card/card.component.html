@@ -9,69 +9,75 @@
     <div class="relative w-full h-full">
             <div class="absolute w-full h-full rounded-xl"
             >
-                <mat-card class="bg-white shadow-lg rounded-xl h-full" [ngStyle]="{
+                <mat-card class="shadow-lg rounded-xl h-full" 
+                    [ngClass]="{
+                    '!bg-sky-100': shouldChangeBg[card.id],
+                    'bg-white': !shouldChangeBg[card.id]
+                  }" 
+                    [ngStyle]="{
                     'background-image': !shouldChangeBg[card.id] ? 'url(/assets/images/DIAMOND_BG.svg)' : 'none',
                     'background-size': !shouldChangeBg[card.id] ? 'cover' : 'contain',
                     'background-position': !shouldChangeBg[card.id] ? 'center' : 'center',
                     'border': !shouldChangeBg[card.id] ? '5px solid #000' : '2px dashed #999'
-                }">
-                <mat-card-header>
-                    <mat-card-title-group>
-                        <mat-card-title> {{ shouldChangeBg[card.id] ? card.name : '' }}</mat-card-title>
-                        <mat-card-subtitle> {{ shouldChangeBg[card.id] ? card.hp : '' }} </mat-card-subtitle>
-                        @if (shouldChangeBg[card.id]) {
-                            <img mat-card-md-image src="/assets/avatars/{{card.img}}" class="!rounded-full">
-                        }
-                    </mat-card-title-group>
-                </mat-card-header>
-                <mat-card-content [ngClass]="{
-                    'w-full h-full !p-2': shouldChangeBg[card.id]
-                  }">
-                    <div [ngClass]="{
-                        'w-full h-full border-2 border-solid p-4' : shouldChangeBg[card.id]
-                      }" class="flex justify-between bg-cover bg-center" style="background-image: url('/assets/backgrounds/dust.svg');">
-                        @if(shouldChangeBg[card.id]) {
-                            <mat-grid-list cols="4" class="w-full h-full">
-                                <mat-grid-tile
-                                    [colspan]="4"
-                                    [rowspan]="1"
-                                    class="flex space-x-2 w-full"
-                                    >
-                                        <div class="w-3/6">
-                                            <mat-icon>book</mat-icon>
-                                        </div>
-                                        <div class="w-1/6">
-                                            <mat-icon>
-                                                battery_charging_full
-                                            </mat-icon>
-                                        </div>
-                                        <div class="w-1/6">
-                                            <mat-icon>
-                                                healing
-                                            </mat-icon>
-                                        </div>
-                                        <div class="w-1/6">
-                                            <mat-icon>
-                                                sports_mma
-                                            </mat-icon>
-                                        </div>
-                                </mat-grid-tile>
-                                @for (action of card.actions; track action) {
-                                <mat-grid-tile
-                                    [colspan]="4"
-                                    [rowspan]="1"
-                                    class="flex space-x-2 w-full"
-                                    >
-                                        <div class="w-3/6">{{ action.name }}</div>
-                                        <div class="w-1/6 text-center">{{ action.energyConsumption }}</div>
-                                        <div class="w-1/6 text-center">{{ action.type === actionTypes.MutualDamageAttack ? action.damageToSelf : '' }}</div>
-                                        <div class="w-1/6 text-center">{{ action.damage }}</div>
-                                </mat-grid-tile>
-                                }
-                            </mat-grid-list>
-                        }
-                    </div>
-                </mat-card-content>
+                    }"
+                >
+                    <mat-card-header>
+                        <mat-card-title-group>
+                            <mat-card-title> {{ shouldChangeBg[card.id] ? card.name : '' }}</mat-card-title>
+                            <mat-card-subtitle> {{ shouldChangeBg[card.id] ? card.hp : '' }} </mat-card-subtitle>
+                            @if (shouldChangeBg[card.id]) {
+                                <img mat-card-md-image src="/assets/avatars/{{card.img}}">
+                            }
+                        </mat-card-title-group>
+                    </mat-card-header>
+                    <mat-card-content [ngClass]="{
+                        'w-full h-full !p-2': shouldChangeBg[card.id]
+                    }">
+                        <div [ngClass]="{
+                            'w-full h-full border-2 border-solid p-4' : shouldChangeBg[card.id]
+                        }" class="flex justify-between bg-cover bg-center" style="background-image: url('/assets/backgrounds/dust.svg');">
+                            @if(shouldChangeBg[card.id]) {
+                                <mat-grid-list cols="4" class="w-full h-full">
+                                    <mat-grid-tile
+                                        [colspan]="4"
+                                        [rowspan]="1"
+                                        class="flex space-x-2 w-full"
+                                        >
+                                            <div class="w-3/6">
+                                                <mat-icon>menu_book</mat-icon>
+                                            </div>
+                                            <div class="w-1/6">
+                                                <mat-icon>
+                                                    battery_charging_full
+                                                </mat-icon>
+                                            </div>
+                                            <div class="w-1/6">
+                                                <mat-icon>
+                                                    healing
+                                                </mat-icon>
+                                            </div>
+                                            <div class="w-1/6">
+                                                <mat-icon>
+                                                    sports_mma
+                                                </mat-icon>
+                                            </div>
+                                    </mat-grid-tile>
+                                    @for (action of card.actions; track action) {
+                                    <mat-grid-tile
+                                        [colspan]="4"
+                                        [rowspan]="1"
+                                        class="flex space-x-2 w-full"
+                                        >
+                                            <div class="w-3/6">{{ action.name }}</div>
+                                            <div class="w-1/6 text-center">{{ action.energyConsumption }}</div>
+                                            <div class="w-1/6 text-center">{{ action.type === actionTypes.MutualDamageAttack ? action.damageToSelf : '-' }}</div>
+                                            <div class="w-1/6 text-center">{{ action.damage }}</div>
+                                    </mat-grid-tile>
+                                    }
+                                </mat-grid-list>
+                            }
+                        </div>
+                    </mat-card-content>
                 </mat-card>
             </div>
     </div>
