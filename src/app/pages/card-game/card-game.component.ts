@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { fromEvent } from 'rxjs';
@@ -7,13 +7,15 @@ import { DragDropModule , CdkDragDrop, CdkDropList, moveItemInArray, transferArr
 import { CardComponent } from "../card/card.component";
 import { Card } from '../../models/card';
 import { ActionType } from '../../models/enums/action-type';
+import { ElixirContainerComponent } from "../../components/threejs/elixir-container/elixir-container.component";
 
 @Component({
   selector: 'app-card-game',
   standalone: true,
-  imports: [MatCardModule, CommonModule, DragDropModule, CdkDropList, CardComponent],
+  imports: [MatCardModule, CommonModule, DragDropModule, CdkDropList, CardComponent, ElixirContainerComponent],
   templateUrl: './card-game.component.html',
   styleUrl: './card-game.component.css',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
   /*animations: [
     trigger('girar', [
       state('frente', style({
@@ -60,7 +62,7 @@ export class CardGameComponent implements OnInit {
     this.cards.push(new Card(2, 'Gician','MON_3.svg',80,[
       {id: 3, name: 'Debuff', energyConsumption: 1, damage: 0, type: ActionType.DebuffAttack}
     ]));
-    
+
     fromEvent(window, 'resize').pipe(
       throttleTime(200) 
     ).subscribe(() => {
