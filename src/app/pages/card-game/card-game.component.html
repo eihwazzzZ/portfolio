@@ -1,4 +1,4 @@
-<div class="flex flex-col h-screen" cdkDropListGroup>
+<div class="flex flex-col min-h-screen bg-[url('/assets/backgrounds/battle-field.svg')] bg-cover bg-center" cdkDropListGroup>
     <div class="flex-1 flex justify-center items-center">
         <mat-card class="flex flex-col items-center bg-white shadow-lg rounded-xl h-full">
         <mat-card-header class="w-full flex justify-center text-center">
@@ -17,8 +17,14 @@
         </mat-card>
     </div>
     <div class="flex-1 flex justify-center items-center" cdkDropList [cdkDropListData]="cards" [cdkDropListDisabled]="dropZoneLimit">
+        <div class="container">
+            <div class="ball"></div>
+        </div>
         @for(card of cards; track card) {
             <app-card [card]="card"></app-card>
         }
+        <div class="container">
+            <div class="ball !bg-red-400"></div>
+        </div>
     </div>
 </div>
