@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, OnInit, OnDestroy, Input } from '@angular/core';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
@@ -19,7 +19,9 @@ export class ElixirContainerComponent implements OnInit, OnDestroy {
   private model: THREE.Object3D;
   private liquid: THREE.Mesh;  // Aquí almacenarás el líquido
 
-  private life: number = 100;  // Vida del personaje (esto puede cambiar dinámicamente)
+  private life: number = 10;  // Vida del personaje (esto puede cambiar dinámicamente)
+
+  @Input() lifeForChild!: number;
 
   constructor(private el: ElementRef) {
     this.loader = new GLTFLoader();
@@ -65,7 +67,7 @@ export class ElixirContainerComponent implements OnInit, OnDestroy {
   }
 
   private loadModel(): void {
-    const modelPath = 'assets/3d-models/BasicBottle.glb';  // Ruta del modelo GLB
+    const modelPath = 'assets/3d-models/Elixir_New_Basic_2.glb';  // Ruta del modelo GLB
     this.loader.load(
       modelPath,
       (gltf) => {
@@ -75,33 +77,82 @@ export class ElixirContainerComponent implements OnInit, OnDestroy {
         this.model.scale.set(1, 1, 1);  // Ajusta el tamaño si es necesario
         this.model.position.set(0, 0, 0);  // Ajusta la posición si es necesario
 
+        const glassMaterial = new THREE.MeshPhysicalMaterial({
+          color: 0x00ffffff,  // Color blanco, ajustable si quieres un tono diferente
+          transparent: true,  // Activar la transparencia
+          opacity: 0.3,  // Valor ajustable entre 0 (totalmente transparente) y 1 (totalmente opaco)
+          transmission: 1.0,  // Esto hace que el material sea transparente como el vidrio
+          roughness: 0.05,  // Controla lo suave del material (puedes ajustarlo a tu gusto)
+          metalness: 0.0,  // El vidrio no es metálico
+          reflectivity: 0.9,  // Controla los reflejos (ajustalo si es necesario)
+          ior: 1.5,  // Índice de refracción típico para vidrio (ajustalo si es necesario)
+          clearcoat: 1.0,  // Agrega una capa brillante sobre el material
+          clearcoatRoughness: 0.1  // Controla la rugosidad de la capa brillante
+        });
         // Acceder al objeto "Sphere" de Blender, que representa el frasco (elixir)
-        const elixir = this.model.getObjectByName('Sphere') as THREE.Object3D;
+        //const elixir = this.model.getObjectByName('Sphere') as THREE.Object3D;
 
+        const liquidMaterial = new THREE.MeshBasicMaterial({
+          color: 0xff0000,  // Color del líquido
+        });
+        
+        // Asignar materiales y el orden de renderizado
+        const elixir = this.model.getObjectByName('Sphere') as THREE.Object3D;
+        this.liquid  = this.model.getObjectByName('Liquid') as THREE.Mesh;
+        
         if (elixir) {
-          const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });  // Por ejemplo, verde
           elixir.traverse((child) => {
+            console.log(child);
+            console.log(child.position);
             if (child instanceof THREE.Mesh) {
-              child.material = material;  // Asignar el material a todas las mallas del elixir
+              child.material = glassMaterial;
+              child.renderOrder = 1;  // La botella se dibuja después de otros objetos
             }
           });
-          // Si encontramos el objeto "Sphere", lo agregamos a la escena
+
           this.scene.add(elixir);
-          elixir.position.set(0, 0, 0);  // Ajusta la posición si es necesario
+          elixir.position.set(0, 0, 0);
         }
+        
+        if (this.liquid) {
+          this.liquid.material = liquidMaterial;
+          //this.liquid.renderOrder = 0;  // El líquido se dibuja primero
+          this.liquid.updateMatrixWorld(true);
+          console.log(this.liquid.position);
+          console.log(this.liquid.scale);
+          this.liquid.scale.set(1, 15, 1);    // Cambia la escala
+          this.liquid.position.set(0, -157, 0);
+          this.liquid.updateMatrixWorld(true);
+          this.scene.add(this.liquid);
+          console.log(this.liquid.position);
+          console.log(this.liquid.scale);
+          this.renderer.render(this.scene, this.camera);
+        }
+        
 
         // Si el objeto "Sphere" no se encuentra, puedes verificar qué objetos tiene el modelo
         else {
           console.error('No se encontró el objeto Sphere en el modelo cargado.');
         }
         // Buscar el objeto del líquido dentro del modelo cargado
-        this.liquid = this.model.getObjectByName('Liquid') as THREE.Mesh;
+        //this.liquid = this.model.getObjectByName('Liquid') as THREE.Mesh;
         
         // Si el líquido no tiene un objeto llamado 'Liquid', puedes acceder por índice
         // this.liquid = this.model.children[1] as THREE.Mesh;
+        /*const liquidMaterial = new THREE.MeshBasicMaterial({
+          color: 0xff0000,  // Color rojo
+        });*/
+        
+        // Asignar material al líquido
+        /*const liquid = this.model.getObjectByName('Liquid') as THREE.Mesh;
+        if (liquid) {
+          liquid.material = liquidMaterial;
+        }*/
 
         // Inicializa el nivel del líquido
         this.updateLiquidLevel();
+        console.log(this.liquid);
+        console.log(this.life);
       },
       (xhr) => {
         console.log((xhr.loaded / xhr.total * 100) + '% cargado');
@@ -114,11 +165,18 @@ export class ElixirContainerComponent implements OnInit, OnDestroy {
 
   private updateLiquidLevel(): void {
     if (this.liquid) {
+      //console.log(this.lifeForChild);
       // Aquí controlamos el nivel del líquido, según la vida del personaje
       const maxHeight = 3;  // Altura máxima del líquido (ajusta según tu modelo)
       const height = (this.life / 100) * maxHeight;  // Modificamos la altura del líquido según la vida
       this.liquid.scale.y = height;  // Ajusta la escala en el eje Y para simular la reducción del líquido
-      this.liquid.position.y = height / 2;  // Ajusta la posición para que el líquido no se salga
+      this.liquid.matrixAutoUpdate = true;
+      this.liquid.position.y = -height / 2;  // Actualiza la posición
+      this.liquid.updateMatrix();
+      this.liquid.updateMatrixWorld(true); 
+      console.log(this.liquid);
+      //console.log(height);
+      //this.liquid.position.y = height / 2;  // Ajusta la posición para que el líquido no se salga
     }
   }
 
@@ -129,17 +187,24 @@ export class ElixirContainerComponent implements OnInit, OnDestroy {
 
   private renderScene(): void {
     if (this.model) {
-      this.model.rotation.x += 0.01;
-      this.model.rotation.y += 0.01;
+      //console.log(this.model);
+      //this.model.rotation.x += 0.01;
+      //this.model.rotation.y += 0.01;
     }
-
+    //console.log(this.lifeForChild);
+    //this.updateLiquidLevel();
+    //console.log(this.liquid);
     
     this.renderer.render(this.scene, this.camera);
   }
 
   // Esta función puede ser llamada para actualizar la vida del personaje y modificar el líquido
   public updateLife(newLife: number): void {
-    this.life = newLife;
+    this.life += newLife;
     this.updateLiquidLevel();  // Actualiza el nivel del líquido en función de la nueva vida
+    console.log(this.life);
+    console.log(this.liquid);
+    debugger;
+    this.liquid.position.y = 0;
   }
 }

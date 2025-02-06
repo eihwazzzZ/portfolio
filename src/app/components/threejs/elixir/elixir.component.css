@@ -1,0 +1,56 @@
+/* Contenedor que alberga el lienzo de Three.js */
+.three-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  /* Estilo para el control deslizante */
+  input[type="range"] {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 200px;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: background 0.3s ease;
+  }
+  
+  input[type="range"]:focus {
+    background: #bbb;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #0066cc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #0066cc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  /* Mostrar porcentaje de líquido */
+  input[type="range"] + span {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    font-size: 16px;
+  }
+  

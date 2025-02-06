@@ -13,19 +13,30 @@
   }
   
   .container {
-    width: 200px;
-    height: 200px;
-    perspective: 800px; /* Profundidad para crear el efecto 3D */
+    width: 150px;
+    height: 150px;
+    perspective: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .ball {
     width: 150px;
     height: 150px;
-    background-color: #ffcc00;
-    border-radius: 50%; /* Hace que sea circular */
+    border-radius: 50%;
     transform-style: preserve-3d;
-    animation: rotateBall 5s infinite linear;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Sombra para dar más realismo */
+    /*animation: rotateBall 5s infinite linear;*/
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease; /* Transición suave para el color */
+  }
+  
+  .life-bar {
+    width: 100%;
+    background-color: green; /* Color de la barra de vida (fijo, puedes cambiarlo si lo prefieres) */
+    position: absolute;
+    bottom: 0; /* Siempre empieza desde el fondo */
+    transition: height 0.3s ease; /* Transición suave cuando cambia la altura */
   }
   
   @keyframes rotateBall {

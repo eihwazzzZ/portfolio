@@ -3,6 +3,7 @@ import { LayoutComponent } from './pages/layout/layout.component';
 import { CardGameComponent } from './pages/card-game/card-game.component';
 import { CardGameContainerComponent } from './pages/card-game-container/card-game-container.component';
 import { CardsComponent } from './pages/cards/cards.component';
+import { ElixirComponent } from './components/threejs/elixir/elixir.component';
 
 export const routes: Routes = [
     {
@@ -13,5 +14,8 @@ export const routes: Routes = [
     },
     {
         path: 'card-game-container', component: CardsComponent
+    },
+    {
+        path: 'elixir-canvas', component: ElixirComponent
     }
 ];

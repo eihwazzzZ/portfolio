@@ -8,11 +8,12 @@ import { CardComponent } from "../card/card.component";
 import { Card } from '../../models/card';
 import { ActionType } from '../../models/enums/action-type';
 import { ElixirContainerComponent } from "../../components/threejs/elixir-container/elixir-container.component";
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-card-game',
   standalone: true,
-  imports: [MatCardModule, CommonModule, DragDropModule, CdkDropList, CardComponent, ElixirContainerComponent],
+  imports: [MatCardModule, CommonModule, DragDropModule, CdkDropList, CardComponent, ElixirContainerComponent, MatButtonModule],
   templateUrl: './card-game.component.html',
   styleUrl: './card-game.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -45,9 +46,11 @@ import { ElixirContainerComponent } from "../../components/threejs/elixir-contai
 export class CardGameComponent implements OnInit {
 
   @ViewChild(CardComponent) child!:CardComponent;
+  @ViewChild(ElixirContainerComponent) elixirChild!:ElixirContainerComponent;
   cards: Card[] = [];
   cardsDropZone: Card[] = [];
   dropZoneLimit: boolean = false;
+  life: number = 100;
 
   ngOnInit() {
     /*this.cards.push(new Card(1, 'Greeny','MON_1.svg',100,[
@@ -68,6 +71,17 @@ export class CardGameComponent implements OnInit {
     ).subscribe(() => {
       // Nothing here. Only for performance
     });
+  };
+
+  gradientBackground() {
+    const colorStop = (this.life / 100) * 100; // Calcula el porcentaje de vida
+    console.log(colorStop);
+    return `linear-gradient(to top, red ${colorStop}%, transparent ${colorStop}%)`;
+  }
+  
+
+  changeLife() {
+    this.elixirChild.updateLife(5);
   };
 
   drop(event: CdkDragDrop<Card[]>) {
