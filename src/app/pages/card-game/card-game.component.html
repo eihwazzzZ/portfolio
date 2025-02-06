@@ -17,16 +17,23 @@
         </mat-card>
     </div>
     <div class="flex-1 flex justify-center items-center" cdkDropList [cdkDropListData]="cards" [cdkDropListDisabled]="dropZoneLimit">
+        <div class="flex flex-col justify-center !mr-5 space-y-4">
+            <button mat-flat-button color="primary" (click)="energy > 0 && energy = energy - 10">Reducir Energía</button>
+            <button mat-flat-button color="primary" (click)="energy < 100 && energy = energy + 10">Aumentar Energía</button>
+        </div>
         <div class="container">
-            <div class="ball"></div>
+            <div class="ball" [ngStyle]="{ 'background': gradientBackground('ENRG') }"></div>
         </div>
         @for(card of cards; track card) {
             <app-card [card]="card"></app-card>
         }
         <div class="container">
-            <div class="ball" [ngStyle]="{ 'background': gradientBackground() }"></div>
+            <div class="ball" [ngStyle]="{ 'background': gradientBackground('HP') }"></div>
         </div>
-        <button mat-flat-button color="primary" (click)="life > 0 && life = life - 10">Reducir Vida</button>
+        <div class="flex flex-col justify-center !ml-5 space-y-4">
+            <button mat-flat-button color="primary" (click)="life > 0 && life = life - 10">Reducir Vida</button>
+            <button mat-flat-button color="primary" (click)="life < 100 && life = life + 10">Aumentar Vida</button>
+        </div>
         <!--button (click)="life > 0 && life = life - 10">Reducir Vida</button>
         <button (click)="life < 100 && life = life + 10">Aumentar Vida</button-->
 

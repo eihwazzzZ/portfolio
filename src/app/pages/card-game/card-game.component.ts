@@ -3,54 +3,28 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { fromEvent } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
-import { DragDropModule , CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem, CdkDragRelease } from '@angular/cdk/drag-drop';
+import { DragDropModule , CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { CardComponent } from "../card/card.component";
 import { Card } from '../../models/card';
 import { ActionType } from '../../models/enums/action-type';
-import { ElixirContainerComponent } from "../../components/threejs/elixir-container/elixir-container.component";
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-card-game',
   standalone: true,
-  imports: [MatCardModule, CommonModule, DragDropModule, CdkDropList, CardComponent, ElixirContainerComponent, MatButtonModule],
+  imports: [MatCardModule, CommonModule, DragDropModule, CdkDropList, CardComponent, MatButtonModule],
   templateUrl: './card-game.component.html',
   styleUrl: './card-game.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
-  /*animations: [
-    trigger('girar', [
-      state('frente', style({
-        transform: 'rotateY(0deg)',
-      })),
-      state('reverso', style({
-        transform: 'rotateY(180deg)',
-      })),
-      transition('frente <=> reverso', [
-        animate('1s ease-in-out')
-      ])
-    ]),
-    trigger('entrada', [
-      transition(':enter', [
-        style({
-          transform: 'translateX(-100%) rotateY(180deg)',
-          opacity: 0
-        }),
-        animate('1s ease-in-out', style({
-          transform: 'translateX(0) rotateY(180deg)',
-          opacity: 1
-        }))
-      ])
-    ]),
-  ]*/
 })
 export class CardGameComponent implements OnInit {
 
   @ViewChild(CardComponent) child!:CardComponent;
-  @ViewChild(ElixirContainerComponent) elixirChild!:ElixirContainerComponent;
   cards: Card[] = [];
   cardsDropZone: Card[] = [];
   dropZoneLimit: boolean = false;
   life: number = 100;
+  energy: number = 100;
 
   ngOnInit() {
     /*this.cards.push(new Card(1, 'Greeny','MON_1.svg',100,[
@@ -73,16 +47,11 @@ export class CardGameComponent implements OnInit {
     });
   };
 
-  gradientBackground() {
-    const colorStop = (this.life / 100) * 100; // Calcula el porcentaje de vida
-    console.log(colorStop);
-    return `linear-gradient(to top, red ${colorStop}%, transparent ${colorStop}%)`;
+  gradientBackground(type: string) {
+    console.log(type);
+    const colorStop = ((type === 'HP' ? this.life : this.energy) / 100) * 100;
+    return `linear-gradient(to top, ${type === 'HP' ? 'red' : 'yellow'} ${colorStop}%, transparent ${colorStop}%)`;
   }
-  
-
-  changeLife() {
-    this.elixirChild.updateLife(5);
-  };
 
   drop(event: CdkDragDrop<Card[]>) {
     if (event.previousContainer === event.container) {
