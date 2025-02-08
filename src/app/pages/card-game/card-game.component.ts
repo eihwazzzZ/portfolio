@@ -48,7 +48,6 @@ export class CardGameComponent implements OnInit {
   };
 
   gradientBackground(type: string) {
-    console.log(type);
     const colorStop = ((type === 'HP' ? this.life : this.energy) / 100) * 100;
     return `linear-gradient(to top, ${type === 'HP' ? 'red' : 'yellow'} ${colorStop}%, transparent ${colorStop}%)`;
   }
