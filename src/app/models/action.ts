@@ -5,6 +5,6 @@ export interface Action {
     name: string;
     energyConsumption: number;
     damage: number;
-    damageToSelf?: number;
+    selfDamage?: number;
     type: ActionType;
 }

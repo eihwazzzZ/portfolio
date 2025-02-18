@@ -70,7 +70,7 @@
                                         >
                                             <div class="w-3/6">{{ action.name }}</div>
                                             <div class="w-1/6 text-center">{{ action.energyConsumption }}</div>
-                                            <div class="w-1/6 text-center">{{ action.type === actionTypes.MutualDamageAttack ? action.damageToSelf : '-' }}</div>
+                                            <div class="w-1/6 text-center">{{ action.type === actionTypes.MutualDamageAttack ? action.selfDamage : '-' }}</div>
                                             <div class="w-1/6 text-center">{{ action.damage }}</div>
                                     </mat-grid-tile>
                                     }

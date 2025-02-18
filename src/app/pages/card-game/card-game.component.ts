@@ -8,11 +8,12 @@ import { CardComponent } from "../card/card.component";
 import { Card } from '../../models/card';
 import { ActionType } from '../../models/enums/action-type';
 import { MatButtonModule } from '@angular/material/button';
+import { AdversaryComponent } from '../../components/adversary/adversary.component';
 
 @Component({
   selector: 'app-card-game',
   standalone: true,
-  imports: [MatCardModule, CommonModule, DragDropModule, CdkDropList, CardComponent, MatButtonModule],
+  imports: [MatCardModule, CommonModule, DragDropModule, CdkDropList, CardComponent, MatButtonModule, AdversaryComponent],
   templateUrl: './card-game.component.html',
   styleUrl: './card-game.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -34,7 +35,7 @@ export class CardGameComponent implements OnInit {
       {id: 1, name: 'Punch', energyConsumption: 1, damage: 10, type: ActionType.DamageAttack}
     ]));
     this.cards.push(new Card(2, 'Molty','MON_2.svg',120,[
-      {id: 2, name: 'Kick', energyConsumption: 1, damage: 15, damageToSelf: 10, type: ActionType.MutualDamageAttack}
+      {id: 2, name: 'Kick', energyConsumption: 1, damage: 15, selfDamage: 10, type: ActionType.MutualDamageAttack}
     ]));
     this.cards.push(new Card(2, 'Gician','MON_3.svg',80,[
       {id: 3, name: 'Debuff', energyConsumption: 1, damage: 0, type: ActionType.DebuffAttack}
