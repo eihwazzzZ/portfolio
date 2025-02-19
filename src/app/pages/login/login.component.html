@@ -1,0 +1,55 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <div class="login-container">
+        <div class="login-form">
+            <mat-card appearance="outlined">
+                <mat-card-header>
+                <mat-card-title-group>
+                    <mat-card-title>Sign In</mat-card-title>
+                    <mat-card-subtitle></mat-card-subtitle>
+                    <img mat-card-md-image src="/assets/logos/ListeningMusic.png" >
+                </mat-card-title-group>
+                </mat-card-header>
+                <mat-card-content class="centered-content">
+                    <mat-form-field>
+                        <mat-label>Enter your username</mat-label>
+                        <input
+                          matInput
+                          placeholder="email@example.com"
+                          formControlName="username"
+                          (blur)="updateErrorMessage(['username'])"
+                          required
+                        />
+                        @if (email.invalid) {
+                          <mat-error>{{errorMessages()['username']}}</mat-error>
+                        }
+                      </mat-form-field>
+                      <mat-form-field>
+                        <mat-label>Enter your password</mat-label>
+                        <input matInput 
+                          [type]="hidePassword ? 'password' : 'text'"
+                          formControlName="password"
+                          (blur)="updateErrorMessage(['password'])"
+                          required
+                          />
+                        <button
+                          mat-icon-button
+                          matSuffix
+                          (click)="onChangePassword($event)"
+                          [attr.aria-label]="'Hide password'"
+                          [attr.aria-pressed]="hidePassword"
+                        >
+                          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        @if (formGroup.controls['password'].invalid) {
+                          <mat-error>{{errorMessages()['password']}}</mat-error>
+                        }
+                      </mat-form-field>
+                      <button mat-raised-button color="primary" type="submit" [disabled]="formGroup.invalid">
+                        Login
+                      </button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+  </form>
+  

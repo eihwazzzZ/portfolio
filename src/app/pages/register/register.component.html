@@ -1,0 +1,95 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <div class="login-container">
+        <div class="login-form">
+            <mat-card appearance="outlined">
+                <mat-card-header>
+                <mat-card-title-group>
+                    <mat-card-title>Sing Up</mat-card-title>
+                    <mat-card-subtitle></mat-card-subtitle>
+                    <img mat-card-md-image src="/assets/logos/ListeningMusic.png" >
+                </mat-card-title-group>
+                </mat-card-header>
+                <mat-card-content class="centered-content">
+                    <mat-form-field>
+                        <mat-label>Enter your email</mat-label>
+                        <input
+                          matInput
+                          placeholder="pat@example.com"
+                          formControlName="email"
+                          (blur)="updateErrorMessage(['email'])"
+                          required
+                        />
+                        @if (formGroup.controls['email'].invalid) {
+                          <mat-error>{{errorMessages()['email']}}</mat-error>
+                        }
+                      </mat-form-field>
+                      <mat-form-field>
+                        <mat-label>Confirm your email</mat-label>
+                        <input
+                          matInput
+                          placeholder="pat@example.com"
+                          formControlName="confirmEmail"
+                          (blur)="updateErrorMessage(['confirmEmail'])"
+                          required
+                        />
+                        @if (formGroup.controls['confirmEmail'].invalid) {
+                          <mat-error>{{errorMessages()['confirmEmail']}}</mat-error>
+                        }
+                      </mat-form-field>
+                      @if (formGroup.hasError('emailMismatch')) {
+                      <div>
+                        <mat-error>Emails do not match</mat-error>
+                      </div>
+                      }
+                      <mat-form-field>
+                        <mat-label>Enter your password</mat-label>
+                        <input matInput [type]="hidePassword ? 'password' : 'text'"
+                          formControlName="password"
+                          (blur)="updateErrorMessage(['password'])"
+                        />
+                        <button
+                          mat-icon-button
+                          matSuffix
+                          (click)="onChangePassword($event)"
+                          [attr.aria-label]="'Hide password'"
+                          [attr.aria-pressed]="hidePassword"
+                        >
+                          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        @if (formGroup.controls['password'].invalid) {
+                          <mat-error>{{errorMessages()['password']}}</mat-error>
+                        }
+                      </mat-form-field>
+                      <mat-form-field>
+                        <mat-label>Confirm your password</mat-label>
+                        <input matInput [type]="hideConfirmPassword ? 'password' : 'text'"
+                          formControlName="confirmPassword"
+                          (blur)="updateErrorMessage(['confirmPassword'])"
+                        />
+                        <button
+                          mat-icon-button
+                          matSuffix
+                          (click)="onChangeConfirmPassword($event)"
+                          [attr.aria-label]="'Hide password'"
+                          [attr.aria-pressed]="hideConfirmPassword"
+                        >
+                          <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        @if (formGroup.controls['confirmPassword'].invalid) {
+                          <mat-error>{{errorMessages()['confirmPassword']}}</mat-error>
+                        }
+                      </mat-form-field>
+                      @if (formGroup.hasError('passwordMismatch')) {
+                        <div>
+                          <mat-error>Passwords do not match</mat-error>
+                        </div>
+                      }
+                      <button mat-raised-button color="primary" type="submit" [disabled]="formGroup.invalid">
+                        Submit
+                      </button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+  </form>
+  

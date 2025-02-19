@@ -1,0 +1,19 @@
+.login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;  /* Centra horizontalmente */
+    align-items: center;      /* Centra verticalmente */
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;   /* Coloca los inputs en columna */
+    gap: 20px;                /* Espaciado entre los inputs */
+    width: 300px;             /* Ancho fijo para el formulario */
+}
+
+.centered-content {
+    display: grid;
+    justify-content: center;
+    margin-top: 32px;
+}

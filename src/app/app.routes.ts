@@ -5,10 +5,22 @@ import { CardGameContainerComponent } from './pages/card-game-container/card-gam
 import { CardsComponent } from './pages/cards/cards.component';
 import { ElixirComponent } from './components/threejs/elixir/elixir.component';
 import { WebsocketComponent } from './pages/websocket/websocket.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { authGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
     {
         path: '', component:LayoutComponent, pathMatch:'full'
+    },
+    {
+        path:'login',
+        component:LoginComponent,
+        //canActivate: [authGuard]
+    },
+    {
+        path:'register',
+        component:RegisterComponent
     },
     {
         path: 'card-game', component: CardGameComponent
@@ -21,5 +33,9 @@ export const routes: Routes = [
     },
     {
         path: 'websocket', component: WebsocketComponent
-    }
+    },
+    {
+        path: '**',
+        redirectTo: 'login'
+    },
 ];

@@ -46,13 +46,6 @@ main {
     position: relative;
 }
 
-.bg-img {
-    background-image:url('/assets/backgrounds/background-1.svg');
-    background-size :cover ;
-    background-repeat: no-repeat; /* Para evitar que se repita */
-    background-position: center; /* Centrar la imagen en el contenedor */
-}
-
 .login-button {
     margin-top: 1rem;
     font-size: 18px;
