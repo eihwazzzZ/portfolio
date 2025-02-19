@@ -100,7 +100,7 @@ export class LoginComponent {
         }
       },
       error:(error) => {
-        console.log(error.message);
+        console.error(error.message);
       }
     });
   };

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { WebsocketService } from '../../services/websocket/websocket.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-websocket',
@@ -10,21 +11,22 @@ import { WebsocketService } from '../../services/websocket/websocket.service';
 })
 export class WebsocketComponent {
 
-  constructor(private websocketService: WebsocketService) {}
+  constructor(private websocketService: WebsocketService, private authService: AuthService) {}
 
   ngOnInit() {
-    // Conectar al WebSocket cuando el componente se inicializa
-    this.websocketService.connect();
+    if (this.authService.isAuthenticated()) {
+      this.websocketService.connect();
+    } else {
+      console.log('User not authenticated, WebSocket connection not established.');
+    }
   }
 
   sendMessage() {
-    // Enviar un mensaje cuando se presione el botón
     const message = 'Hola desde Angular';
     this.websocketService.sendMessage(message);
   }
 
   ngOnDestroy() {
-    // Desconectar cuando el componente sea destruido
     this.websocketService.disconnect();
   }
 

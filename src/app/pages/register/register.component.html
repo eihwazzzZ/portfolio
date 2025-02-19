@@ -11,34 +11,34 @@
                 </mat-card-header>
                 <mat-card-content class="centered-content">
                     <mat-form-field>
-                        <mat-label>Enter your email</mat-label>
+                        <mat-label>Enter your username</mat-label>
                         <input
                           matInput
                           placeholder="pat@example.com"
-                          formControlName="email"
-                          (blur)="updateErrorMessage(['email'])"
+                          formControlName="username"
+                          (blur)="updateErrorMessage(['username'])"
                           required
                         />
-                        @if (formGroup.controls['email'].invalid) {
-                          <mat-error>{{errorMessages()['email']}}</mat-error>
+                        @if (formGroup.controls['username'].invalid) {
+                          <mat-error>{{errorMessages()['username']}}</mat-error>
                         }
                       </mat-form-field>
                       <mat-form-field>
-                        <mat-label>Confirm your email</mat-label>
+                        <mat-label>Confirm your username</mat-label>
                         <input
                           matInput
                           placeholder="pat@example.com"
-                          formControlName="confirmEmail"
-                          (blur)="updateErrorMessage(['confirmEmail'])"
+                          formControlName="confirmUsername"
+                          (blur)="updateErrorMessage(['confirmUsername'])"
                           required
                         />
-                        @if (formGroup.controls['confirmEmail'].invalid) {
-                          <mat-error>{{errorMessages()['confirmEmail']}}</mat-error>
+                        @if (formGroup.controls['confirmUsername'].invalid) {
+                          <mat-error>{{errorMessages()['confirmUsername']}}</mat-error>
                         }
                       </mat-form-field>
-                      @if (formGroup.hasError('emailMismatch')) {
+                      @if (formGroup.hasError('usernameMismatch')) {
                       <div>
-                        <mat-error>Emails do not match</mat-error>
+                        <mat-error>usernames do not match</mat-error>
                       </div>
                       }
                       <mat-form-field>

@@ -7,6 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { merge } from 'rxjs';
+import { RegistrationService } from '../../services/registration/registration.service';
+import { User } from '../../interfaces/User';
 
 @Component({
   selector: 'app-register',
@@ -19,28 +21,28 @@ export class RegisterComponent {
   formGroup: FormGroup;
   
   errorMessages = signal<{ [key: string]: string }>({
-    email: '',
-    confirmEmail: ''
+    username: '',
+    confirmUsername: ''
   });
-  misMatchEmailsMessage = signal('');
+  misMatchusernamesMessage = signal('');
   hidePassword = true;
   hideConfirmPassword = true;
 
   username: string = '';
   password: string = '';
 
-  constructor() {
+  constructor(private registrationService: RegistrationService) {
     this.formGroup = new FormGroup(
       {
-        email: new FormControl('', [Validators.required, Validators.email]),
-        confirmEmail: new FormControl('', [Validators.required, Validators.email]),
+        username: new FormControl('', [Validators.required, Validators.email]),
+        confirmUsername: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', [Validators.required, Validators.minLength(8)]),
         confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
       },
-      [this.emailMatchValidator, this.passwordMatchValidator]
+      [this.usernameMatchValidator, this.passwordMatchValidator]
     );
 
-    const formControls = ['email', 'confirmEmail', 'password', 'confirmPassword'];
+    const formControls = ['username', 'confirmUsername', 'password', 'confirmPassword'];
     const observables = formControls.map(controlName => 
       merge(
         this.formGroup.get(controlName)!.statusChanges,
@@ -67,7 +69,7 @@ export class RegisterComponent {
     };
 
     updateErrorMessage(formControls: string[]) {
-      const errorMessages: { [key: string]: string } = { email: '', confirmEmail: '', password: '', confirmPassword: '' };
+      const errorMessages: { [key: string]: string } = { username: '', confirmUsername: '', password: '', confirmPassword: '' };
 
       Object.keys(this.formGroup.controls).forEach(controlName => {
         const control = this.formGroup.get(controlName);
@@ -75,36 +77,36 @@ export class RegisterComponent {
         if (control && control.touched) {
           if (control.hasError('required')) {
             errorMessages[controlName] = `${controlName.charAt(0).toUpperCase() + controlName.slice(1)} is required.`;
-          } else if (control.hasError('email')) {
+          } else if (control.hasError('username')) {
             errorMessages[controlName] = `Not a valid ${controlName}.`;
           } else if (control.hasError('minlength')) {
             const requiredLength = control.errors?.['minlength'].requiredLength;
             errorMessages[controlName] = `Min length is ${requiredLength}.`;
-          } /*else if (controlName === 'confirmEmail' && this.formGroup.hasError('emailMismatch') && control.touched) {
-            errorMessages[controlName] = 'Emails do not match.';
+          } /*else if (controlName === 'confirmUsername' && this.formGroup.hasError('usernameMismatch') && control.touched) {
+            errorMessages[controlName] = 'usernames do not match.';
           } else if (controlName === 'confirmPassword' && this.formGroup.hasError('passwordMismatch') && control.touched) {
             errorMessages[controlName] = 'Passwords do not match.';
           }*/
         }
       });
 
-      /*if (this.formGroup.hasError('emailMismatch')) {
-        this.misMatchEmailsMessage.set('Emails do not match.');
+      /*if (this.formGroup.hasError('usernameMismatch')) {
+        this.misMatchusernamesMessage.set('usernames do not match.');
       }*/
 
       this.errorMessages.set(errorMessages);
     };
 
-    emailMatchValidator(control: AbstractControl): ValidationErrors | null {
+    usernameMatchValidator(control: AbstractControl): ValidationErrors | null {
       if (!(control instanceof FormGroup)) {
         return null;
       }
   
-      const email = control.get('email')?.value;
-      const confirmEmail = control.get('confirmEmail')?.value;
+      const username = control.get('username')?.value;
+      const confirmUsername = control.get('confirmUsername')?.value;
       
-      if (email && confirmEmail && email !== confirmEmail) {
-        return { emailMismatch: true };
+      if (username && confirmUsername && username !== confirmUsername) {
+        return { usernameMismatch: true };
       }
       return null;
     };
@@ -124,12 +126,22 @@ export class RegisterComponent {
     };
 
     onSubmit() {
-      console.log(this.formGroup);
       if (this.formGroup.valid) {
-        console.log('Form submitted', this.formGroup.value);
+        const { username, password }: User = this.formGroup.value;
+        const user: User = { username, password };
+        this.registrationService
+        .singUp(user)
+        .subscribe({
+          next:(data) => {
+            console.log(data);
+          },
+          error:(error) => {
+            console.error(error);
+          }
+        });
       } else {
         console.log('Form is invalid');
-        this.updateErrorMessage(['email', 'confirmEmail', 'password', 'confirmPassword']);
+        this.updateErrorMessage(['username', 'confirmUsername', 'password', 'confirmPassword']);
       }
     };
 

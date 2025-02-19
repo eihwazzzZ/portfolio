@@ -10,7 +10,7 @@ export class WebsocketService {
 
   constructor() {
     this.client = new Client({
-      brokerURL: 'ws://localhost:8080/ws',  // WebSocket URL
+      brokerURL: 'ws://localhost:8080/ws',
       connectHeaders: {},
       onConnect: (frame) => {
         console.log('Connected: ' + frame);
