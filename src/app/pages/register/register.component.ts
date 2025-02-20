@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { merge } from 'rxjs';
 import { RegistrationService } from '../../services/registration/registration.service';
 import { User } from '../../interfaces/User';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -31,7 +32,7 @@ export class RegisterComponent {
   username: string = '';
   password: string = '';
 
-  constructor(private registrationService: RegistrationService) {
+  constructor(private registrationService: RegistrationService, private router: Router) {
     this.formGroup = new FormGroup(
       {
         username: new FormControl('', [Validators.required, Validators.email]),
@@ -134,6 +135,7 @@ export class RegisterComponent {
         .subscribe({
           next:(data) => {
             console.log(data);
+            this.router.navigate(['card-game']);
           },
           error:(error) => {
             console.error(error);

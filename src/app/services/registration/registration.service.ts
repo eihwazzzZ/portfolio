@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { appsettings } from '../../settings/appsettings';
 import { Observable } from 'rxjs';
-import { LoginResponse } from '../../interfaces/LoginResponse';
 import { User } from '../../interfaces/User';
+import { UserResponse } from '../../interfaces/UserResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class RegistrationService {
 
   constructor() { }
 
-  singUp(user: User): Observable<LoginResponse>{
-      return this.http.post<LoginResponse>(`${this.baseUrl}/registration/signup`, user)
+  singUp(user: User): Observable<UserResponse>{
+      return this.http.post<UserResponse>(`${this.baseUrl}/registration/signup`, user)
   }
 }

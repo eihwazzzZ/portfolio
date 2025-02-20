@@ -94,7 +94,7 @@ export class LoginComponent {
       next:(data) => {
         if(data?.token) {
           localStorage.setItem('token', data?.token);
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['card-game']);
         } else {
           alert('Credenciales incorrectas, intente de nuevo');
         }
