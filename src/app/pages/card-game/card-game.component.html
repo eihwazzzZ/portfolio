@@ -1,3 +1,18 @@
+<mat-sidenav-container class="side-nav absolute !bg-transparent">
+    <mat-sidenav #sidenav mode="side" [opened]="opened" position="start" [hasBackDrop]="true" class="!bg-transparent">
+      <mat-nav-list>
+        <button mat-icon-button (click)="logout()">
+            <mat-icon>logout</mat-icon>
+        </button>
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-sidenav-content>
+</mat-sidenav-container>
 <div class="flex flex-col min-h-screen bg-[url('/assets/backgrounds/battle-field.svg')] bg-cover bg-center" cdkDropListGroup>
     <div class="flex-1 flex justify-center gap-4 items-center h-2/3">
         <mat-card class="flex flex-col items-center bg-white shadow-lg rounded-xl h-full">

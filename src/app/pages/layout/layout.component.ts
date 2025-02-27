@@ -20,8 +20,8 @@ export class LayoutComponent {
   description:string = "I am continuously seeking to improve my knowledge, as well as my soft and hard skills";
   email:string = "Martinbrito1985@gmail.com";
 
-  goToCardGame = () => {
-    this.router.navigate(['card-game']);
+  goToLogin = () => {
+    this.router.navigate(['login']);
   };
 
 }

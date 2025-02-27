@@ -1,59 +1,58 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+html, body {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
   
-  html, body {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f0f0f0;
-  }
+.container {
+  width: 150px;
+  height: 150px;
+  perspective: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
   
-  .container {
-    width: 150px;
-    height: 150px;
-    perspective: 800px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.ball {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  /*animation: rotateBall 5s infinite linear;*/
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease; /* Transición suave para el color */
+}
   
-  .ball {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    transform-style: preserve-3d;
-    /*animation: rotateBall 5s infinite linear;*/
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.3s ease; /* Transición suave para el color */
-  }
+.life-bar {
+  width: 100%;
+  background-color: green; /* Color de la barra de vida (fijo, puedes cambiarlo si lo prefieres) */
+  position: absolute;
+  bottom: 0; /* Siempre empieza desde el fondo */
+  transition: height 0.3s ease; /* Transición suave cuando cambia la altura */
+}
+
+.side-nav {
+  display: flex;
+  position: absolute;
+}
   
-  .life-bar {
-    width: 100%;
-    background-color: green; /* Color de la barra de vida (fijo, puedes cambiarlo si lo prefieres) */
-    position: absolute;
-    bottom: 0; /* Siempre empieza desde el fondo */
-    transition: height 0.3s ease; /* Transición suave cuando cambia la altura */
+@keyframes rotateBall {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
   }
-  
-  @keyframes rotateBall {
-    0% {
-      transform: rotateX(0deg) rotateY(0deg);
-    }
-    25% {
-      transform: rotateX(180deg) rotateY(0deg);
-    }
-    50% {
-      transform: rotateX(180deg) rotateY(180deg);
-    }
-    75% {
-      transform: rotateX(0deg) rotateY(180deg);
-    }
-    100% {
-      transform: rotateX(0deg) rotateY(0deg);
-    }
+  25% {
+    transform: rotateX(180deg) rotateY(0deg);
   }
+  50% {
+    transform: rotateX(180deg) rotateY(180deg);
+  }
+  75% {
+    transform: rotateX(0deg) rotateY(180deg);
+  }
+  100% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+}
   
