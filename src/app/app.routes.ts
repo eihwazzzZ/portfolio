@@ -7,6 +7,7 @@ import { WebsocketComponent } from './pages/websocket/websocket.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { authGuard } from './auth/auth.guard';
+import { LobbyComponent } from './pages/lobby/lobby.component';
 
 export const routes: Routes = [
     {
@@ -19,6 +20,10 @@ export const routes: Routes = [
     {
         path:'register',
         component:RegisterComponent
+    },
+    {
+        path:'lobby',
+        component: LobbyComponent
     },
     {
         path: '',

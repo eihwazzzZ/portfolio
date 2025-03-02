@@ -20,22 +20,53 @@ export class WebsocketService {
       },
       onStompError: (frame) => {
         console.error('STOMP Error: ' + frame);
+      },
+      onDisconnect: (frame) => {
+        console.log('Disconnected: ' + frame);
       }
     });
   }
 
-  public connect() {
-    this.client.activate();
-  }
-
-  public sendMessage(message: string) {
-    this.client.publish({
-      destination: '/app/sendMessage',
-      body: message
+  /*public connect() {
+    if (!this.client.active) {
+      this.client.activate();
+    } else {
+      console.log('WebSocket already connected');
+    }
+  }*/
+  
+  public connect(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      if (this.client.active) {
+        resolve();
+      } else {
+        this.client.activate();
+        const interval = setInterval(() => {
+          if (this.client.active) {
+            clearInterval(interval);
+            resolve();
+          }
+        }, 100);
+      }
     });
   }
 
+  public sendMessage(message: string) {
+    if (this.client.active) {
+      this.client.publish({
+        destination: '/app/sendMessage',
+        body: message
+      });
+    } else {
+      console.log('WebSocket is not connected');
+    }
+  }
+
   public disconnect() {
-    this.client.deactivate();
+    if (this.client.active) {
+      this.client.deactivate();
+    } else {
+      console.log('WebSocket already disconnected');
+    }
   }
 }

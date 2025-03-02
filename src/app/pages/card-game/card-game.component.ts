@@ -64,7 +64,6 @@ export class CardGameComponent implements OnInit {
     this.cardService.getCardsByUsername().subscribe({
       next: (data) => {
         this.cards = data;
-        console.log(data);
       },
       error: (error) => {
         console.error('Hubo un error al obtener las cartas', error);
@@ -95,7 +94,6 @@ export class CardGameComponent implements OnInit {
       );
     }
     this.dropZoneLimit = true;
-    debugger;
     setTimeout(() => {
       this.child.girarCarta(event.item.data.id);
     }, 500);
