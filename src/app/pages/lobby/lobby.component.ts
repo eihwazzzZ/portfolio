@@ -18,7 +18,7 @@ export class LobbyComponent {
   constructor(private webSocketService: WebsocketService, private authService: AuthService) { }
 
   async findGameSession() {
-    //if (this.authService.isAuthenticated()) {
+    if (this.authService.isAuthenticated()) {
       try {
         await this.webSocketService.connect();
         this.wsMessage = {
@@ -31,9 +31,9 @@ export class LobbyComponent {
       } catch (error) {
         console.error('Error establishing WebSocket connection:', error);
       }
-    /*} else {
+    } else {
       console.log('User not authenticated, WebSocket connection not established.');
-    }*/
+    }
   }
 
 }

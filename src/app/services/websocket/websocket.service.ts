@@ -31,6 +31,14 @@ export class WebsocketService {
     });
   }
 
+  /*public connect() {
+    if (!this.client.active) {
+      this.client.activate();
+    } else {
+      console.log('WebSocket already connected');
+    }
+  }*/
+  
   public connect(): Promise<void> {
     return new Promise((resolve, reject) => {
       if (this.client.active) {
