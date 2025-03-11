@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { merge } from 'rxjs';
 import { RegistrationService } from '../../services/registration/registration.service';
-import { User } from '../../interfaces/User';
+import { User } from '../../interfaces/user';
 import { Router } from '@angular/router';
 
 @Component({

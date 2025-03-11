@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { appsettings } from '../../settings/appsettings';
-import { User } from '../../interfaces/User';
-import { LoginResponse } from '../../interfaces/LoginResponse';
+import { User } from '../../interfaces/user';
+import { LoginResponse } from '../../interfaces/login-response';
 import { Observable, tap } from 'rxjs';
 
 @Injectable({

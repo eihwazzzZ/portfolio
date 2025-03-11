@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Client } from '@stomp/stompjs';
+import { Client, StompHeaders } from '@stomp/stompjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +9,18 @@ export class WebsocketService {
   private client: Client;
 
   constructor() {
+    const token = localStorage.getItem('token');
     this.client = new Client({
       brokerURL: 'ws://localhost:8080/ws',
-      connectHeaders: {},
+      connectHeaders: {
+        Authorization: `Bearer ${token}`
+      },
       onConnect: (frame) => {
+        const stompHeaders = new StompHeaders();
         console.log('Connected: ' + frame);
         this.client.subscribe('/topic/messages', (message) => {
           console.log('Received: ' + message.body);
-        }); 
+        }, {Authorization: `Bearer ${token}`});
       },
       onStompError: (frame) => {
         console.error('STOMP Error: ' + frame);
@@ -27,14 +31,6 @@ export class WebsocketService {
     });
   }
 
-  /*public connect() {
-    if (!this.client.active) {
-      this.client.activate();
-    } else {
-      console.log('WebSocket already connected');
-    }
-  }*/
-  
   public connect(): Promise<void> {
     return new Promise((resolve, reject) => {
       if (this.client.active) {
@@ -53,9 +49,11 @@ export class WebsocketService {
 
   public sendMessage(message: string) {
     if (this.client.active) {
+      const token = localStorage.getItem('token');
       this.client.publish({
         destination: '/app/sendMessage',
-        body: message
+        body: message,
+        headers: { Authorization: `Bearer ${token}` }
       });
     } else {
       console.log('WebSocket is not connected');

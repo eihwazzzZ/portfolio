@@ -93,7 +93,7 @@ export class LoginComponent {
     }).subscribe({
       next:(data) => {
         if(data?.token) {
-          this.router.navigate(['card-game']);
+          this.router.navigate(['lobby']);
         } else {
           alert('Credenciales incorrectas, intente de nuevo');
         }
